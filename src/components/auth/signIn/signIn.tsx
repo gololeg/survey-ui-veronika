@@ -10,10 +10,11 @@ type FormValues = {
 }
 
 type SignInProps = {
+  disabled: boolean
   loginHandler: (data: FormValues) => void
 }
 
-export const SignIn = ({ loginHandler }: SignInProps) => {
+export const SignIn = ({ disabled, loginHandler }: SignInProps) => {
   const { handleSubmit, register } = useForm<FormValues>()
 
   const onSubmit = (data: FormValues) => {
@@ -31,7 +32,7 @@ export const SignIn = ({ loginHandler }: SignInProps) => {
           type={'password'}
           {...register('password')}
         />
-        <Button type={'submit'} variant={'primary'}>
+        <Button disabled={disabled} type={'submit'} variant={'primary'}>
           Sign In
         </Button>
       </form>
