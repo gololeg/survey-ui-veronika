@@ -1,0 +1,12 @@
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+  align-items: center;
+
+  width: 600px;
+  margin: 150px auto;
+
+  font-size: var(--font-size-xxl);
+  color: var(--color-light-700);
+}
