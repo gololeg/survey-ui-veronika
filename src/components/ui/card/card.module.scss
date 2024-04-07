@@ -1,0 +1,18 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  align-items: center;
+
+  max-width: 420px;
+  margin: 150px auto;
+  padding: 40px 40px 100px;
+
+  background-color: var(--color-dark-700);
+  border: 1px solid #313131;
+  box-shadow: drop-shadow(-1px -1px 2px rgb(0 0 0 / 10%)) drop-shadow(1px 1px 2px rgb(0 0 0 / 10%));
+
+  & .title {
+    margin: 0;
+  }
+}
