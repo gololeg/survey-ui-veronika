@@ -1,0 +1,15 @@
+{
+  "login": {
+    "login": "Login",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "bye": "Bye-bye!",
+    "hello": "Hello!"
+  },
+  "mainPage": {
+    "description": "There are some js-tasks for you.",
+    "ready": "Are you ready to start?",
+    "go": "GO!"
+  }
+}
