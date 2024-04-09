@@ -33,14 +33,16 @@ export const Header = () => {
       <h3 className={style.headerTitle}>
         <Link to={ROUTES.main}>Survey-APP</Link>
       </h3>
-      <ChangeLanguage />
-      {data ? (
-        <Button disabled={isLoading} onClick={onLogoutClick} variant={'secondary'}>
-          {t('login.signOut')}
-        </Button>
-      ) : (
-        <Button variant={'secondary'}>{t('login.signIn')}</Button>
-      )}
+      <div className={style.buttonsWrapper}>
+        <ChangeLanguage />
+        {data ? (
+          <Button disabled={isLoading} onClick={onLogoutClick} variant={'secondary'}>
+            {t('login.signOut')}
+          </Button>
+        ) : (
+          <Button variant={'secondary'}>{t('login.signIn')}</Button>
+        )}
+      </div>
     </div>
   )
 }
