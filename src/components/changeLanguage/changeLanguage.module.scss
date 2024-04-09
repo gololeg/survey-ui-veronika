@@ -1,0 +1,8 @@
+.langButtons {
+  display: flex;
+  column-gap: 3px;
+
+  & button {
+    padding: 6px 10px;
+  }
+}

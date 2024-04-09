@@ -17,10 +17,15 @@
     }
   }
 
-  & .headerButton {
+  & .buttonsWrapper {
+    display: flex;
+    column-gap: 5px;
+  }
+
+  /* & .headerButton {
     cursor: pointer;
     padding: 6px 28px;
     background-color: var(--color-dark-300);
     border-radius: 4px;
-  }
+  } */
 }

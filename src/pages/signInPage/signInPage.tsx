@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -6,18 +7,20 @@ import { ROUTES } from '@/constants'
 import { LoginRequestType, useAuthMeQuery, useLoginMutation } from '@/services'
 
 export const SignInPage = () => {
+  const { t } = useTranslation()
   const { data } = useAuthMeQuery()
   const [login, { isLoading }] = useLoginMutation()
   const navigate = useNavigate()
+  const hello = t('login.hello')
   const sendLoginData = (data: LoginRequestType) => {
     login(data)
       .unwrap()
       .then(() => {
-        toast.success('Hello')
+        toast.success(hello)
         navigate(ROUTES.main)
       })
       .catch(error => {
-        toast.error(error.data.message)
+        toast.error(error.data.message || 'error!')
       })
   }
 
