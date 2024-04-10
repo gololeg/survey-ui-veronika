@@ -8,8 +8,22 @@
     "hello": "Hello!"
   },
   "mainPage": {
-    "description": "There are some js-tasks for you.",
+    "title": "Tasks list",
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "type": "Type",
+      "level": "Level",
+      "action": "Action"
+    },
     "ready": "Are you ready to start?",
     "go": "GO!"
+  },
+  "navbar": {
+    "create": "Create task",
+    "allTasks": "All tasks",
+    "settings": "Settings",
+    "allAccesses": "All accesses",
+    "createAccess": "Create access"
   }
 }
