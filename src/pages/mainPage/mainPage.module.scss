@@ -1,12 +1,17 @@
 .mainWrapper {
   display: flex;
   flex-direction: column;
-  row-gap: 50px;
-  align-items: center;
+  row-gap: 20px;
 
-  width: 600px;
-  margin: 150px auto;
-
-  font-size: var(--font-size-xxl);
+  width: 100%;
   color: var(--color-light-700);
+
+  & .editIcon {
+    width: 20px;
+    height: 20px;
+
+    &:hover {
+      color: var(--color-accent-100);
+    }
+  }
 }
