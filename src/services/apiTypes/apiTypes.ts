@@ -5,9 +5,9 @@ export type LoginRequestType = {
 
 export type GetTaskRequestType = {
   answers: []
-  ars: null
+  ars: string
   description: string
-  file: null
+  file: string
   id: number
   image: string
   imageStr: string
@@ -17,7 +17,7 @@ export type GetTaskRequestType = {
   }
   name: string
   nextTaskId: number
-  strAnswers: null
+  strAnswers: string
   type: {
     id: number
     name: 'CHECKBOX' | 'RADIO'
