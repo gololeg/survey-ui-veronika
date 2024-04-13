@@ -1,3 +1,3 @@
 export * from './errorPage'
-export * from './mainPage'
+export * from './tasksPage'
 export * from './signInPage'
