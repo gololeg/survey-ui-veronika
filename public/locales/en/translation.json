@@ -16,8 +16,7 @@
       "level": "Level",
       "action": "Action"
     },
-    "ready": "Are you ready to start?",
-    "go": "GO!"
+    "searchPlaceholder": "Search by name"
   },
   "navbar": {
     "create": "Create task",
