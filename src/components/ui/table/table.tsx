@@ -1,5 +1,9 @@
 import { ComponentProps, ComponentPropsWithoutRef } from 'react'
 
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
+//import { MdKeyboardArrowUp } from 'react-icons/md'
+import { RxCaretSort } from 'react-icons/rx'
+
 import style from './table.module.scss'
 
 type TableProps = ComponentProps<'table'>
@@ -29,11 +33,11 @@ export const TableHeaderData = ({ ...rest }: ComponentProps<'th'>) => {
 export type Column = {
   key: string
   sortable?: boolean
-  title: string
+  title: 'CHECKBOX' | 'HIGH' | 'LOW' | 'MIDDLE' | 'RADIO' | string
 }
 
 export type Sort = {
-  direction: 'asc' | 'desc'
+  direction: '' | 'asc' | 'desc'
   key: string
 } | null
 
@@ -60,7 +64,8 @@ export const TableHeader = ({
     }
 
     if (sort.direction === 'desc') {
-      return onSort(null)
+      //return onSort(null)
+      return onSort({ direction: '', key })
     }
 
     return onSort({
@@ -68,13 +73,36 @@ export const TableHeader = ({
       key,
     })
   }
+  const setArrow = (sort: Sort) => {
+    if (sort?.direction === 'asc') {
+      return <MdKeyboardArrowUp />
+    } else if (sort?.direction === 'desc') {
+      return <MdKeyboardArrowDown />
+    } else {
+      return <RxCaretSort />
+    }
+  }
 
   return (
     <TableHead {...restProps}>
       <TableRow>
         {columns.map(({ key, sortable = true, title }) => (
           <TableHeaderData key={key} onClick={handleSort(key, sortable)}>
-            <span className={style.sortTitle}>{title}</span>
+            <span className={style.sortTitle}>
+              {title}
+              {sort && sort.key === key && (
+                <span className={style.arrows}>
+                  {setArrow(sort)}
+                  {/*{sort.direction === 'asc' ? (
+                    <MdKeyboardArrowUp />
+                  ) : sort.direction === 'desc' ? (
+                    <MdKeyboardArrowDown />
+                  ) : (
+                    <RxCaretSort />
+                  )}*/}
+                </span>
+              )}
+            </span>
           </TableHeaderData>
         ))}
       </TableRow>
