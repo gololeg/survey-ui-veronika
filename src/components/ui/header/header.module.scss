@@ -1,5 +1,5 @@
 .headerWrapper {
-  position: fixed;
+  position: sticky;
   top: 0;
   z-index: 1;
   display: flex;
@@ -11,6 +11,7 @@
   padding: 0 8.5rem;
 
   background: var(--color-dark-700);
+  border-bottom: 1px solid var(--color-dark-500);
 
   & .headerTitle {
     margin: 0;

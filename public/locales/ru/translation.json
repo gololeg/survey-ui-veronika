@@ -7,7 +7,7 @@
     "bye": "До встречи!",
     "hello": "Привет!"
   },
-  "mainPage": {
+  "tasksPage": {
     "title": "Список задач",
     "table": {
       "name": "Название",

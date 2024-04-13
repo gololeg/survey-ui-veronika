@@ -7,7 +7,7 @@
     "bye": "Bye-bye!",
     "hello": "Hello!"
   },
-  "mainPage": {
+  "tasksPage": {
     "title": "Tasks list",
     "table": {
       "name": "Name",
