@@ -8,7 +8,7 @@ import {
 
 import { Layout } from '@/components/layout'
 import { ROUTES } from '@/constants'
-import { ErrorPage, MainPage, SignInPage } from '@/pages'
+import { ErrorPage, SignInPage, TasksPage } from '@/pages'
 import { useAuthMeQuery } from '@/services'
 
 const publicRoutes: RouteObject[] = [
@@ -20,8 +20,8 @@ const publicRoutes: RouteObject[] = [
 
 const privateRoutes: RouteObject[] = [
   {
-    element: <MainPage />,
-    path: ROUTES.main,
+    element: <TasksPage />,
+    path: ROUTES.tasks,
   },
 ]
 
@@ -47,7 +47,7 @@ function PrivateRoutes() {
   }
   const isLoggedIn = !!data
 
-  return isLoggedIn ? <Outlet /> : <Navigate to={'/login'} />
+  return isLoggedIn ? <Outlet /> : <Navigate to={ROUTES.login} />
 }
 
 export const Router = () => {

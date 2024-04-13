@@ -17,7 +17,7 @@ export const SignInPage = () => {
       .unwrap()
       .then(() => {
         toast.success(hello)
-        navigate(ROUTES.main)
+        navigate(ROUTES.tasks)
       })
       .catch(error => {
         toast.error(error.data.message || 'error!')
@@ -25,7 +25,7 @@ export const SignInPage = () => {
   }
 
   if (data) {
-    return <Navigate to={ROUTES.main} />
+    return <Navigate to={ROUTES.tasks} />
   }
 
   return <SignIn disabled={isLoading} loginHandler={sendLoginData} />

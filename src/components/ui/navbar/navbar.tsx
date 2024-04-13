@@ -19,7 +19,7 @@ export const Navbar = () => {
         <li>
           <NavLink
             className={({ isActive }) => (isActive ? style.active : style.nav)}
-            to={ROUTES.main}
+            to={ROUTES.tasks}
           >
             <MdOutlineTaskAlt />
             {t('navbar.allTasks')}

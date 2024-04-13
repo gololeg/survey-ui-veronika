@@ -4,6 +4,6 @@ export const ROUTES = {
   createTask: '/admin/tasks/create',
   error: '*',
   login: '/login',
-  main: '/admin/tasks/all',
   settings: '/admin/settings',
+  tasks: '/admin/tasks/all',
 } as const
