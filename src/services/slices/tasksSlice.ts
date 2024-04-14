@@ -37,8 +37,8 @@ export const tasksSlice = createSlice({
               .slice(0, +action.payload)
               .filter(task => task.name.toLowerCase().includes(state.searchName.toLowerCase()))
     },
-    sortTasks: (state, action: PayloadAction<string>) => {
-      if (action.payload === '') {
+    sortTasks: (state, action: PayloadAction<{ direction: string; key: string }>) => {
+      if (action.payload.direction === '') {
         state.sortedTasks =
           state.selectValue === 'All tasks'
             ? state.allTasks
@@ -48,15 +48,23 @@ export const tasksSlice = createSlice({
                 .slice(0, +state.selectValue)
                 .filter(task => task.name.toLowerCase().includes(state.searchName.toLowerCase()))
       }
-      if (action.payload === 'asc') {
-        state.sortedTasks = state.sortedTasks.sort((a, b) =>
-          a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-        )
+      if (action.payload.direction === 'asc') {
+        if (action.payload.key === 'name') {
+          state.sortedTasks = state.sortedTasks.sort((a, b) =>
+            a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+          )
+        } else if (action.payload.key === 'type') {
+          state.sortedTasks = state.sortedTasks.sort((a, b) =>
+            a.type.name.toLowerCase().localeCompare(b.type.name.toLowerCase())
+          )
+        } else if (action.payload.key === 'level') {
+          state.sortedTasks = state.sortedTasks.sort((a, b) =>
+            a.level.name.toLowerCase().localeCompare(b.level.name.toLowerCase())
+          )
+        }
       }
-      if (action.payload === 'desc') {
-        state.sortedTasks = state.sortedTasks
-          .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
-          .reverse()
+      if (action.payload.direction === 'desc') {
+        state.sortedTasks = state.sortedTasks.reverse()
       }
     },
   },

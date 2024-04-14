@@ -1,7 +1,6 @@
 import { ComponentProps, ComponentPropsWithoutRef } from 'react'
 
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
-//import { MdKeyboardArrowUp } from 'react-icons/md'
 import { RxCaretSort } from 'react-icons/rx'
 
 import style from './table.module.scss'
@@ -90,18 +89,12 @@ export const TableHeader = ({
           <TableHeaderData key={key} onClick={handleSort(key, sortable)}>
             <span className={style.sortTitle}>
               {title}
-              {sort && sort.key === key && (
+              {sort?.key !== key && sortable && (
                 <span className={style.arrows}>
-                  {setArrow(sort)}
-                  {/*{sort.direction === 'asc' ? (
-                    <MdKeyboardArrowUp />
-                  ) : sort.direction === 'desc' ? (
-                    <MdKeyboardArrowDown />
-                  ) : (
-                    <RxCaretSort />
-                  )}*/}
+                  <RxCaretSort />
                 </span>
               )}
+              {sort && sort.key === key && <span className={style.arrows}>{setArrow(sort)}</span>}
             </span>
           </TableHeaderData>
         ))}

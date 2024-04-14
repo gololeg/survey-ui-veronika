@@ -25,10 +25,10 @@ type PropsType = {
 export const TasksTable = ({ tasks }: PropsType) => {
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
-  const [sort, setSort] = useState<Sort>({ direction: '', key: 'name' })
+  const [sort, setSort] = useState<Sort>({ direction: '', key: '' })
   const onSetSort = (sort: Sort) => {
     setSort(sort)
-    dispatch(sortTasks(sort?.direction || ''))
+    dispatch(sortTasks(sort || { direction: '', key: '' }))
   }
   const columns: Column[] = [
     {
@@ -47,12 +47,10 @@ export const TasksTable = ({ tasks }: PropsType) => {
     },
     {
       key: 'type',
-      sortable: false,
       title: t('tasksPage.table.type'),
     },
     {
       key: 'level',
-      sortable: false,
       title: t('tasksPage.table.level'),
     },
     {
