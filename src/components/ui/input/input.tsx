@@ -59,6 +59,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             <button
               className={s.inputIcon}
               onClick={() => setShowPassword(!showPassword)}
+              tabIndex={-1}
               type={'button'}
             >
               {showPassword ? (
