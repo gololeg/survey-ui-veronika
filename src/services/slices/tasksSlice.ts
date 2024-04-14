@@ -1,3 +1,4 @@
+import { Sort } from '@/components/ui'
 import { GetTaskRequestType } from '@/services'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
@@ -5,6 +6,7 @@ const initialState = {
   allTasks: [] as GetTaskRequestType[],
   searchName: localStorage.getItem('searchName') || '',
   selectValue: localStorage.getItem('selectCount') || 'All tasks',
+  sortValues: { direction: '', key: '' } as Sort,
   sortedTasks: [] as GetTaskRequestType[],
 }
 
@@ -23,6 +25,9 @@ export const tasksSlice = createSlice({
     setSelectValue: (state, action: PayloadAction<string>) => {
       state.selectValue = action.payload
     },
+    setSortValues: (state, action: PayloadAction<Sort>) => {
+      state.sortValues = action.payload || { direction: '', key: '' }
+    },
     setTasks: (state, action: PayloadAction<GetTaskRequestType[]>) => {
       state.allTasks = action.payload
       state.sortedTasks = action.payload
@@ -31,22 +36,22 @@ export const tasksSlice = createSlice({
       state.sortedTasks =
         action.payload === 'All tasks'
           ? state.allTasks
-              .slice()
+              //.slice()
               .filter(task => task.name.toLowerCase().includes(state.searchName.toLowerCase()))
           : state.allTasks
-              .slice(0, +action.payload)
               .filter(task => task.name.toLowerCase().includes(state.searchName.toLowerCase()))
+              .slice(0, +action.payload)
     },
     sortTasks: (state, action: PayloadAction<{ direction: string; key: string }>) => {
       if (action.payload.direction === '') {
         state.sortedTasks =
           state.selectValue === 'All tasks'
             ? state.allTasks
+                .filter(task => task.name.toLowerCase().includes(state.searchName.toLowerCase()))
                 .slice()
-                .filter(task => task.name.toLowerCase().includes(state.searchName.toLowerCase()))
             : state.allTasks
-                .slice(0, +state.selectValue)
                 .filter(task => task.name.toLowerCase().includes(state.searchName.toLowerCase()))
+                .slice(0, +state.selectValue)
       }
       if (action.payload.direction === 'asc') {
         if (action.payload.key === 'name') {
@@ -74,6 +79,7 @@ export const {
   setFilterBySearchName,
   setSearchName,
   setSelectValue,
+  setSortValues,
   setTasks,
   setTasksCountBySelect,
   sortTasks,

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
@@ -12,8 +11,9 @@ import {
   TableRow,
   Typography,
 } from '@/components/ui'
-import { GetTaskRequestType, useAppDispatch } from '@/services'
-import { sortTasks } from '@/services/slices'
+import { GetTaskRequestType, useAppDispatch, useAppSelector } from '@/services'
+import { selectSort } from '@/services/selectors'
+import { setSortValues, sortTasks } from '@/services/slices'
 import { RiEdit2Line } from 'react-icons/ri'
 
 import style from './tasksTable.module.scss'
@@ -25,10 +25,10 @@ type PropsType = {
 export const TasksTable = ({ tasks }: PropsType) => {
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
-  const [sort, setSort] = useState<Sort>({ direction: '', key: '' })
+  const sort = useAppSelector(selectSort)
   const onSetSort = (sort: Sort) => {
-    setSort(sort)
     dispatch(sortTasks(sort || { direction: '', key: '' }))
+    dispatch(setSortValues(sort || { direction: '', key: '' }))
   }
   const columns: Column[] = [
     {

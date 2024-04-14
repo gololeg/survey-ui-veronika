@@ -74,9 +74,12 @@ export const TasksPage = () => {
 
   const changeTasksCountBySelectValue = (value: string) => {
     dispatch(setSelectValue(value))
-    dispatch(setTasksCountBySelect(value))
+    //dispatch(setTasksCountBySelect(value))
     localStorage.setItem('selectCount', value)
   }
+
+  const tasksForRender =
+    selectValue === 'All tasks' ? sortedTasks : sortedTasks.slice(0, +selectValue)
 
   return (
     <div className={style.mainWrapper}>
@@ -97,7 +100,7 @@ export const TasksPage = () => {
         />
       </div>
 
-      <div>{data && <TasksTable tasks={sortedTasks} />}</div>
+      <div>{data && <TasksTable tasks={tasksForRender} />}</div>
     </div>
   )
 }
