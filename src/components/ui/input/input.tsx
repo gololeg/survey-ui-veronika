@@ -1,7 +1,6 @@
 import { ChangeEvent, ComponentPropsWithoutRef, KeyboardEvent, forwardRef, useState } from 'react'
 
 import { closeEyeIcon, eyeIcon } from '@/assets'
-//import { MdOutlineSearch } from 'react-icons/md'
 
 import s from './input.module.scss'
 
