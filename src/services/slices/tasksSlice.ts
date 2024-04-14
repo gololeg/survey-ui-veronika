@@ -30,8 +30,12 @@ export const tasksSlice = createSlice({
     setTasksCountBySelect: (state, action: PayloadAction<string>) => {
       state.sortedTasks =
         action.payload === 'All tasks'
-          ? state.allTasks.slice()
-          : state.allTasks.slice(0, +action.payload)
+          ? state.allTasks
+              .slice()
+              .filter(task => task.name.toLowerCase().includes(state.searchName.toLowerCase()))
+          : state.allTasks
+              .slice(0, +action.payload)
+              .filter(task => task.name.toLowerCase().includes(state.searchName.toLowerCase()))
     },
     sortTasks: (state, action: PayloadAction<string>) => {
       if (action.payload === '') {
