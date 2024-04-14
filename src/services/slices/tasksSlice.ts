@@ -3,7 +3,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   allTasks: [] as GetTaskRequestType[],
-  searchName: '',
+  searchName: localStorage.getItem('searchName') || '',
+  selectValue: localStorage.getItem('selectCount') || 'All tasks',
   sortedTasks: [] as GetTaskRequestType[],
 }
 
@@ -12,19 +13,36 @@ export const tasksSlice = createSlice({
   name: 'tasks',
   reducers: {
     setFilterBySearchName: (state, action: PayloadAction<string>) => {
-      state.sortedTasks = state.sortedTasks.filter(task => task.name.includes(action.payload))
+      state.sortedTasks = state.sortedTasks.filter(task =>
+        task.name.toLowerCase().includes(action.payload.toLowerCase())
+      )
     },
     setSearchName: (state, action: PayloadAction<string>) => {
       state.searchName = action.payload
-      //state.sortedTasks = state.sortedTasks.filter(task => task.name === state.searchName)
+    },
+    setSelectValue: (state, action: PayloadAction<string>) => {
+      state.selectValue = action.payload
     },
     setTasks: (state, action: PayloadAction<GetTaskRequestType[]>) => {
       state.allTasks = action.payload
       state.sortedTasks = action.payload
     },
+    setTasksCountBySelect: (state, action: PayloadAction<string>) => {
+      state.sortedTasks =
+        action.payload === 'All tasks'
+          ? state.allTasks.slice()
+          : state.allTasks.slice(0, +action.payload)
+    },
     sortTasks: (state, action: PayloadAction<string>) => {
       if (action.payload === '') {
-        state.sortedTasks = state.allTasks
+        state.sortedTasks =
+          state.selectValue === 'All tasks'
+            ? state.allTasks
+                .slice()
+                .filter(task => task.name.toLowerCase().includes(state.searchName.toLowerCase()))
+            : state.allTasks
+                .slice(0, +state.selectValue)
+                .filter(task => task.name.toLowerCase().includes(state.searchName.toLowerCase()))
       }
       if (action.payload === 'asc') {
         state.sortedTasks = state.sortedTasks.sort((a, b) =>
@@ -40,4 +58,11 @@ export const tasksSlice = createSlice({
   },
 })
 
-export const { setFilterBySearchName, setSearchName, setTasks, sortTasks } = tasksSlice.actions
+export const {
+  setFilterBySearchName,
+  setSearchName,
+  setSelectValue,
+  setTasks,
+  setTasksCountBySelect,
+  sortTasks,
+} = tasksSlice.actions
