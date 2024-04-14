@@ -2,10 +2,17 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 
-import { Button, Input, TasksTable, Typography } from '@/components/ui'
+import { Input, Select, TasksTable, Typography } from '@/components/ui'
+import { useDebounce } from '@/hooks'
 import { useAppDispatch, useAppSelector, useGetTasksQuery } from '@/services'
-import { setFilterBySearchName, setSearchName, setTasks } from '@/services/slices'
-import { MdOutlineSearch } from 'react-icons/md'
+import { selectSearchName, selectSelectValue, selectSortedTasks } from '@/services/selectors'
+import {
+  setFilterBySearchName,
+  setSearchName,
+  setSelectValue,
+  setTasks,
+  setTasksCountBySelect,
+} from '@/services/slices'
 
 import style from './tasksPage.module.scss'
 
@@ -13,16 +20,50 @@ export const TasksPage = () => {
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
   const { data, error, isLoading } = useGetTasksQuery()
-  const sortedTasks = useAppSelector(state => state.tasks.sortedTasks)
-  const searchName = useAppSelector(state => state.tasks.searchName)
+  const sortedTasks = useAppSelector(selectSortedTasks)
+  const searchName = useAppSelector(selectSearchName)
+  const selectValue = useAppSelector(selectSelectValue)
+  const debouncedSearchValue = useDebounce(searchName, 500)
+  const selectOptions = [
+    {
+      label: 'all',
+      value: 'All tasks',
+    },
+    {
+      label: '10',
+      value: '10',
+    },
+    {
+      label: '20',
+      value: '20',
+    },
+    {
+      label: '50',
+      value: '50',
+    },
+  ]
 
   useEffect(() => {
     data && dispatch(setTasks(data))
   }, [data])
 
   useEffect(() => {
+    if (debouncedSearchValue || searchName) {
+      if (searchName) {
+        dispatch(setFilterBySearchName(searchName))
+      }
+      dispatch(setFilterBySearchName(debouncedSearchValue))
+      localStorage.setItem('searchName', debouncedSearchValue)
+    } else {
+      dispatch(setTasksCountBySelect(selectValue))
+      localStorage.removeItem('searchName')
+    }
+  }, [debouncedSearchValue, data])
+
+  useEffect(() => {
     error && toast.error('Something went wrong...')
   }, [error])
+
   if (isLoading) {
     return <div>Loading...</div>
   }
@@ -31,8 +72,10 @@ export const TasksPage = () => {
     dispatch(setSearchName(value))
   }
 
-  const searchByName = () => {
-    dispatch(setFilterBySearchName(searchName))
+  const changeTasksCountBySelectValue = (value: string) => {
+    dispatch(setSelectValue(value))
+    dispatch(setTasksCountBySelect(value))
+    localStorage.setItem('selectCount', value)
   }
 
   return (
@@ -45,9 +88,13 @@ export const TasksPage = () => {
           type={'search'}
           value={searchName}
         />
-        <Button onClick={searchByName}>
-          <MdOutlineSearch />
-        </Button>
+        <Select
+          defaultValue={selectOptions[0].value}
+          onValueChange={changeTasksCountBySelectValue}
+          placeholder={selectOptions[0].value}
+          selectOptions={selectOptions}
+          value={selectValue}
+        />
       </div>
 
       <div>{data && <TasksTable tasks={sortedTasks} />}</div>
