@@ -6,13 +6,7 @@ import { Input, Select, TasksTable, Typography } from '@/components/ui'
 import { useDebounce } from '@/hooks'
 import { useAppDispatch, useAppSelector, useGetTasksQuery } from '@/services'
 import { selectSearchName, selectSelectValue, selectSortedTasks } from '@/services/selectors'
-import {
-  setFilterBySearchName,
-  setSearchName,
-  setSelectValue,
-  setTasks,
-  setTasksCountBySelect,
-} from '@/services/slices'
+import { setFilterBySearchName, setSearchName, setSelectValue, setTasks } from '@/services/slices'
 
 import style from './tasksPage.module.scss'
 
@@ -55,7 +49,6 @@ export const TasksPage = () => {
       dispatch(setFilterBySearchName(debouncedSearchValue))
       localStorage.setItem('searchName', debouncedSearchValue)
     } else {
-      dispatch(setTasksCountBySelect(selectValue))
       localStorage.removeItem('searchName')
     }
   }, [debouncedSearchValue, data])
@@ -74,7 +67,6 @@ export const TasksPage = () => {
 
   const changeTasksCountBySelectValue = (value: string) => {
     dispatch(setSelectValue(value))
-    //dispatch(setTasksCountBySelect(value))
     localStorage.setItem('selectCount', value)
   }
 
