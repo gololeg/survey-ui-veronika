@@ -7,9 +7,22 @@
     "bye": "Bye-bye!",
     "hello": "Hello!"
   },
-  "mainPage": {
-    "description": "There are some js-tasks for you.",
-    "ready": "Are you ready to start?",
-    "go": "GO!"
+  "tasksPage": {
+    "title": "Tasks list",
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "type": "Type",
+      "level": "Level",
+      "action": "Action"
+    },
+    "searchPlaceholder": "Search by name"
+  },
+  "navbar": {
+    "create": "Create task",
+    "allTasks": "All tasks",
+    "settings": "Settings",
+    "allAccesses": "All accesses",
+    "createAccess": "Create access"
   }
 }

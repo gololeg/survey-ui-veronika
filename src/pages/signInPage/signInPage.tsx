@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -9,7 +10,7 @@ import { LoginRequestType, useAuthMeQuery, useLoginMutation } from '@/services'
 export const SignInPage = () => {
   const { t } = useTranslation()
   const { data } = useAuthMeQuery()
-  const [login, { isLoading }] = useLoginMutation()
+  const [login, { error, isLoading }] = useLoginMutation()
   const navigate = useNavigate()
   const hello = t('login.hello')
   const sendLoginData = (data: LoginRequestType) => {
@@ -17,15 +18,19 @@ export const SignInPage = () => {
       .unwrap()
       .then(() => {
         toast.success(hello)
-        navigate(ROUTES.main)
+        navigate(ROUTES.tasks)
       })
       .catch(error => {
         toast.error(error.data.message || 'error!')
       })
   }
 
+  useEffect(() => {
+    error && toast.error('Something went wrong...')
+  }, [error])
+
   if (data) {
-    return <Navigate to={ROUTES.main} />
+    return <Navigate to={ROUTES.tasks} />
   }
 
   return <SignIn disabled={isLoading} loginHandler={sendLoginData} />

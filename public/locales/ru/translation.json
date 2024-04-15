@@ -7,9 +7,22 @@
     "bye": "До встречи!",
     "hello": "Привет!"
   },
-  "mainPage": {
-    "description": "Здесь содержатся js-задачи для вас.",
-    "ready": "Вы готовы начать?",
-    "go": "ВПЕРЁД!"
+  "tasksPage": {
+    "title": "Список задач",
+    "table": {
+      "name": "Название",
+      "description": "Описание",
+      "type": "Тип",
+      "level": "Уровень",
+      "action": "Действие"
+    },
+    "searchPlaceholder": "Поиск по имени"
+  },
+  "navbar": {
+    "create": "Создать задачу",
+    "allTasks": "Все задачи",
+    "settings": "Настройки",
+    "allAccesses": "Все доступы",
+    "createAccess": "Создать доступ"
   }
 }

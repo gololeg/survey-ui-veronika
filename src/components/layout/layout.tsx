@@ -1,12 +1,26 @@
 import { Outlet } from 'react-router-dom'
 
-import { Header } from '@/components/ui'
+import { Header, Navbar } from '@/components/ui'
+import { useAuthMeQuery } from '@/services'
+
+import style from './layout.module.scss'
 
 export const Layout = () => {
+  const { data } = useAuthMeQuery()
+
   return (
     <>
       <Header />
-      <Outlet />
+      <div className={style.layout}>
+        {data && (
+          <div className={style.navbar}>
+            <Navbar />
+          </div>
+        )}
+        <div className={style.content}>
+          <Outlet />
+        </div>
+      </div>
     </>
   )
 }

@@ -31,7 +31,7 @@ export const Header = () => {
   return (
     <div className={style.headerWrapper}>
       <h3 className={style.headerTitle}>
-        <Link to={ROUTES.main}>Survey-APP</Link>
+        <Link to={ROUTES.tasks}>Survey-APP</Link>
       </h3>
       <div className={style.buttonsWrapper}>
         <ChangeLanguage />
