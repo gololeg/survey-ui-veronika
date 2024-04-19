@@ -18,6 +18,26 @@
     },
     "searchPlaceholder": "Search by name"
   },
+  "createTaskPage": {
+    "title": "Add new task",
+    "form": {
+      "name": "Name",
+      "description": "Description",
+      "type": "Type",
+      "level": "Level",
+      "addImgButton": "Add image",
+      "answers": "Answers",
+      "checkboxLabel": "Right",
+      "addAnswerBlock": "Add answer block",
+      "createTaskButton": "Create task"
+    },
+    "mistakes": {
+      "imageFormat": "Only JPEG and PNG images are allowed.",
+      "imageSize": "The image size should not exceed 1MB.",
+      "description": "You must add description or image",
+      "answers": "You must add min 2 answers with 1 checked"
+    }
+  },
   "navbar": {
     "create": "Create task",
     "allTasks": "All tasks",
