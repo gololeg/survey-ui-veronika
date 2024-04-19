@@ -32,11 +32,13 @@
       "createTaskButton": "Create task"
     },
     "mistakes": {
+      "nameContains": "Name must contain at least 1 character",
       "imageFormat": "Only JPEG and PNG images are allowed.",
       "imageSize": "The image size should not exceed 1MB.",
       "description": "You must add description or image",
       "answers": "You must add min 2 answers with 1 checked"
-    }
+    },
+    "successCreated": "Your task is successfully created"
   },
   "navbar": {
     "create": "Create task",
