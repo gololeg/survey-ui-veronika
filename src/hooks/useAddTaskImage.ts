@@ -17,7 +17,6 @@ export const useAddTaskImage = () => {
     const allowedTypes = ['image/jpeg', 'image/png']
 
     if (!allowedTypes.includes(file.type)) {
-      //setCoverError('Only JPEG and PNG images are allowed.')
       setCoverError(t('createTaskPage.mistakes.imageFormat'))
 
       return
@@ -25,7 +24,6 @@ export const useAddTaskImage = () => {
     const maxSizeInBytes = 1024 * 1024
 
     if (file.size > maxSizeInBytes) {
-      //setCoverError('The image size should not exceed 1MB.')
       setCoverError(t('createTaskPage.mistakes.imageSize'))
 
       return

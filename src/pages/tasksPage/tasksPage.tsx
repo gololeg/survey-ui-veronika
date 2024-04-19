@@ -57,10 +57,6 @@ export const TasksPage = () => {
     error && toast.error('Something went wrong...')
   }, [error])
 
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
   const getSearchName = (value: string) => {
     dispatch(setSearchName(value))
   }
@@ -72,6 +68,10 @@ export const TasksPage = () => {
 
   const tasksForRender =
     selectValue === 'All tasks' ? sortedTasks : sortedTasks.slice(0, +selectValue)
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div className={style.mainWrapper}>
