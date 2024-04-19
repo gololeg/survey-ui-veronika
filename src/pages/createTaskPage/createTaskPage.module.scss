@@ -1,0 +1,52 @@
+.cardWrapper {
+  margin-top: 75px;
+  padding: 40px;
+
+  & .blockWrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    width: 100%;
+
+    & .formWrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+
+      & .selectWrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 12px;
+      }
+
+      & .answersWrapper {
+        display: flex;
+        flex-direction: column;
+        row-gap: 6px;
+
+        & .answersTitle {
+          margin: 12px auto 0;
+          color: var(--color-dark-100);
+        }
+
+        & .answerBlock {
+          display: grid;
+          grid-template-columns: 73% 1fr;
+          column-gap: 10px;
+          align-items: end;
+        }
+      }
+
+      & .submitButton {
+        margin-top: 12px;
+      }
+    }
+
+    & .errorMessage {
+      font-size: 0.75rem;
+      line-height: 1.5rem;
+      color: var(--color-danger-300);
+      text-align: start;
+    }
+  }
+}
