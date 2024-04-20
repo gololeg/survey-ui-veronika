@@ -48,7 +48,7 @@ export const Select = ({
         required
         value={value}
       >
-        <SelectRadixUI.Trigger className={`${style.trigger} ${className}`} tabIndex={1}>
+        <SelectRadixUI.Trigger className={`${style.trigger} ${className}`}>
           <SelectRadixUI.Value placeholder={placeholder} />
           <ChevronDownIcon className={style.icon} />
         </SelectRadixUI.Trigger>

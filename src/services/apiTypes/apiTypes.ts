@@ -3,9 +3,18 @@ export type LoginRequestType = {
   password: string
 }
 
+type Answer = {
+  id: number
+  isRight: boolean
+  name: string
+  rowTextNum: number
+  text: string
+  value: string
+}
+
 export type GetTaskRequestType = {
-  answers: []
-  ars: string
+  answers: Answer[]
+  ars: number[]
   description: string
   file: string
   id: number
@@ -13,13 +22,18 @@ export type GetTaskRequestType = {
   imageStr: string
   level: {
     id: number
-    name: 'HIGH' | 'LOW' | 'MIDDLE'
+    name: 'HIGH' | 'LOW' | 'MIDDLE' | string
   }
   name: string
   nextTaskId: number
   strAnswers: string
   type: {
     id: number
-    name: 'CHECKBOX' | 'RADIO'
+    name: 'CHECKBOX' | 'RADIO' | string
   }
 }
+
+export type CreateTaskRequest = Pick<
+  GetTaskRequestType,
+  'description' | 'image' | 'level' | 'name' | 'strAnswers' | 'type'
+>

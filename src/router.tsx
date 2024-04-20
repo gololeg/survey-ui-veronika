@@ -8,7 +8,7 @@ import {
 
 import { Layout } from '@/components/layout'
 import { ROUTES } from '@/constants'
-import { ErrorPage, SignInPage, TasksPage } from '@/pages'
+import { CreateTaskPage, ErrorPage, SignInPage, TasksPage } from '@/pages'
 import { useAuthMeQuery } from '@/services'
 
 const publicRoutes: RouteObject[] = [
@@ -22,6 +22,10 @@ const privateRoutes: RouteObject[] = [
   {
     element: <TasksPage />,
     path: ROUTES.tasks,
+  },
+  {
+    element: <CreateTaskPage />,
+    path: ROUTES.createTask,
   },
 ]
 

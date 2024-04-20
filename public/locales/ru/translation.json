@@ -18,6 +18,28 @@
     },
     "searchPlaceholder": "Поиск по имени"
   },
+  "createTaskPage": {
+    "title": "Добавление новой задачи",
+    "form": {
+      "name": "Название",
+      "description": "Описание",
+      "type": "Тип",
+      "level": "Уровень",
+      "addImgButton": "Добавить изображение",
+      "answers": "Ответы",
+      "checkboxLabel": "Верно",
+      "addAnswerBlock": "Добавить блок с ответом",
+      "createTaskButton": "Создать задачу"
+    },
+    "mistakes": {
+      "nameContains": "Название должно содержать хотя бы 1 символ",
+      "imageFormat": "Только JPEG и PNG форматы изображений.",
+      "imageSize": "Размер изображения не должен превышать 1MB.",
+      "description": "Необходимо добавить описание либо изображение",
+      "answers": "Необходимо добавить мин. 2 ответа (1 верный)"
+    },
+    "successCreated": "Задача успешно создана"
+  },
   "navbar": {
     "create": "Создать задачу",
     "allTasks": "Все задачи",
