@@ -2,8 +2,15 @@ import { Sort } from '@/components/ui'
 import { GetTaskRequestType } from '@/services'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+const storedTasks = localStorage.getItem('tasks')
+let parsedTasks: GetTaskRequestType[] = []
+
+if (storedTasks) {
+  parsedTasks = JSON.parse(storedTasks)
+}
+
 const initialState = {
-  allTasks: [] as GetTaskRequestType[],
+  allTasks: parsedTasks || ([] as GetTaskRequestType[]),
   searchName: localStorage.getItem('searchName') || '',
   selectValue: localStorage.getItem('selectCount') || 'All tasks',
   sortValues: { direction: '', key: '' } as Sort,

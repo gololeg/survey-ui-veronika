@@ -38,7 +38,10 @@ export const TasksPage = () => {
   ]
 
   useEffect(() => {
-    data && dispatch(setTasks(data))
+    if (data) {
+      dispatch(setTasks(data))
+      localStorage.setItem('tasks', JSON.stringify(data))
+    }
   }, [data])
 
   useEffect(() => {
