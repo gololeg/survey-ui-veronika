@@ -1,8 +1,12 @@
-.editIcon {
-  width: 20px;
-  height: 20px;
+.link {
+  color: var(--color-light-100);
 
-  &:hover {
-    color: var(--color-accent-100);
+  .editIcon {
+    width: 20px;
+    height: 20px;
+
+    &:hover {
+      color: var(--color-accent-100);
+    }
   }
 }

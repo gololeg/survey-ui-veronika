@@ -5,5 +5,6 @@ export const ROUTES = {
   error: '*',
   login: '/login',
   settings: '/admin/settings',
+  task: '/admin/tasks/all/:id',
   tasks: '/admin/tasks/all',
 } as const

@@ -11,6 +11,7 @@ import {
   TableRow,
   Typography,
 } from '@/components/ui'
+import { ROUTES } from '@/constants'
 import { GetTaskRequestType, useAppDispatch, useAppSelector } from '@/services'
 import { selectSort } from '@/services/selectors'
 import { setSortValues, sortTasks } from '@/services/slices'
@@ -95,7 +96,7 @@ export const TasksTable = ({ tasks }: PropsType) => {
                   </Typography>
                 </TableData>
                 <TableData>
-                  <Link to={''}>
+                  <Link className={style.link} to={`${ROUTES.tasks}/${task.id}`}>
                     <RiEdit2Line className={style.editIcon} />
                   </Link>
                 </TableData>
