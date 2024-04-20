@@ -3,10 +3,11 @@ export type LoginRequestType = {
   password: string
 }
 
-type Answer = {
+export type Answer = {
   id: number
-  isRight: boolean
+  isRight?: boolean
   name: string
+  right?: boolean
   rowTextNum: number
   text: string
   value: string

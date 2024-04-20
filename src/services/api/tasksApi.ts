@@ -9,6 +9,11 @@ const tasksApi = baseApi.injectEndpoints({
           return { body: args, method: 'POST', url: `v1/tasks` }
         },
       }),
+      getTask: builder.query<GetTaskRequestType, { id?: string }>({
+        query: ({ id }) => {
+          return { method: 'GET', url: `v1/tasks/${id}` }
+        },
+      }),
       getTasks: builder.query<GetTaskRequestType[], void>({
         providesTags: ['Task'],
         query: () => `v1/tasks`,
@@ -17,4 +22,4 @@ const tasksApi = baseApi.injectEndpoints({
   },
 })
 
-export const { useCreateTaskMutation, useGetTasksQuery } = tasksApi
+export const { useCreateTaskMutation, useGetTaskQuery, useGetTasksQuery } = tasksApi
