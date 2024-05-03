@@ -1,4 +1,18 @@
 .taskCard {
   max-width: 60%;
   margin-top: 30px;
+
+  & .taskTitle {
+    display: flex;
+    align-items: center;
+
+    & .editButton {
+      height: 28px;
+      padding: 1px 6px;
+    }
+  }
+
+  & .taskImage {
+    max-width: 100%;
+  }
 }

@@ -5,36 +5,34 @@ export type LoginRequestType = {
 
 export type Answer = {
   id: number
-  isRight?: boolean
   name: string
-  right?: boolean
-  rowTextNum: number
+  right: boolean
   text: string
   value: string
 }
 
 export type GetTaskRequestType = {
+  active: boolean
   answers: Answer[]
-  ars: number[]
   description: string
-  file: string
   id: number
   image: string
-  imageStr: string
   level: {
     id: number
     name: 'HIGH' | 'LOW' | 'MIDDLE' | string
   }
   name: string
-  nextTaskId: number
-  strAnswers: string
   type: {
     id: number
     name: 'CHECKBOX' | 'RADIO' | string
   }
 }
 
+export type UpdateTaskRequest = Partial<GetTaskRequestType>
+
 export type CreateTaskRequest = Pick<
   GetTaskRequestType,
-  'description' | 'image' | 'level' | 'name' | 'strAnswers' | 'type'
->
+  'description' | 'image' | 'level' | 'name' | 'type'
+> & {
+  answers: Array<Pick<Answer, 'right' | 'text'>>
+}

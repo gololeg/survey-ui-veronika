@@ -1,6 +1,7 @@
 export * from './button'
 export * from './card'
 export * from './checkbox'
+export * from './editingTask'
 export * from './header'
 export * from './input'
 export * from './inputUploader'

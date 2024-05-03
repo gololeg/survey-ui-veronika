@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import {
+  CheckboxComponent,
   Column,
   Sort,
   Table,
@@ -12,7 +14,12 @@ import {
   Typography,
 } from '@/components/ui'
 import { ROUTES } from '@/constants'
-import { GetTaskRequestType, useAppDispatch, useAppSelector } from '@/services'
+import {
+  GetTaskRequestType,
+  useAppDispatch,
+  useAppSelector,
+  useChangeTaskStatusMutation,
+} from '@/services'
 import { selectSort } from '@/services/selectors'
 import { setSortValues, sortTasks } from '@/services/slices'
 import { RiEdit2Line } from 'react-icons/ri'
@@ -24,8 +31,10 @@ type PropsType = {
 }
 
 export const TasksTable = ({ tasks }: PropsType) => {
+  const [changeStatus] = useChangeTaskStatusMutation()
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
+
   const sort = useAppSelector(selectSort)
   const onSetSort = (sort: Sort) => {
     dispatch(sortTasks(sort || { direction: '', key: '' }))
@@ -36,6 +45,11 @@ export const TasksTable = ({ tasks }: PropsType) => {
       key: 'number',
       sortable: false,
       title: 'N',
+    },
+    {
+      key: 'active',
+      sortable: false,
+      title: t('tasksPage.table.active'),
     },
     {
       key: 'name',
@@ -67,11 +81,27 @@ export const TasksTable = ({ tasks }: PropsType) => {
         <TableHeader columns={columns} onSort={onSetSort} sort={sort} />
         <TableBody>
           {tasks.map((task, index) => {
+            const changeTaskActive = () => {
+              changeStatus({ id: task.id })
+                .unwrap()
+                .then(() => {
+                  toast.success(t('tasksPage.statusChanged'))
+                })
+                .catch(error => {
+                  toast.error(error.data.message)
+                })
+            }
+
             return (
               <TableRow key={task.id}>
                 <TableData style={{ width: '10%' }}>
                   <Typography as={'span'} variant={'body2'}>
                     {index + 1}
+                  </Typography>
+                </TableData>
+                <TableData style={{ width: '10%' }}>
+                  <Typography as={'span'} variant={'body2'}>
+                    <CheckboxComponent checked={task.active} onCheckedHandler={changeTaskActive} />
                   </Typography>
                 </TableData>
                 <TableData style={{ width: '10%' }}>

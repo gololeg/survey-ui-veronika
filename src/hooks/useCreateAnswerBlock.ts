@@ -2,14 +2,14 @@ import { useState } from 'react'
 
 export const useCreateAnswerBlock = () => {
   const [answersList, setAnswersList] = useState([
-    { isRight: false, text: '' },
-    { isRight: false, text: '' },
+    { right: false, text: '' },
+    { right: false, text: '' },
   ])
   const handleAddMoreClick = () => {
     setAnswersList(prevAnswerList => [
       ...prevAnswerList,
       {
-        isRight: false,
+        right: false,
         text: '',
       },
     ])
@@ -28,7 +28,7 @@ export const useCreateAnswerBlock = () => {
     setAnswersList(prevAnswerList => {
       const updatedAnswerList = [...prevAnswerList]
 
-      updatedAnswerList[index].isRight = value
+      updatedAnswerList[index].right = value
 
       return updatedAnswerList
     })

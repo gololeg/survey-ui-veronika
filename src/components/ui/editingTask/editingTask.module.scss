@@ -1,0 +1,37 @@
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  width: 80%;
+
+  & .selectsWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+  }
+
+  & .answersWrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+
+    & .answersTitle {
+      margin: 12px auto 0;
+      color: var(--color-dark-100);
+    }
+
+    & .answer {
+      display: grid;
+      grid-template-columns: 73% 1fr;
+      column-gap: 10px;
+      align-items: end;
+    }
+  }
+
+  & .errorMessage {
+    font-size: 0.75rem;
+    line-height: 1.5rem;
+    color: var(--color-danger-300);
+    text-align: start;
+  }
+}

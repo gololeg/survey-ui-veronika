@@ -16,6 +16,7 @@ import {
 import { ROUTES, levelOptions, typeOptions } from '@/constants'
 import { useAddTaskImage, useCreateAnswerBlock } from '@/hooks'
 import { useAppSelector, useCreateTaskMutation } from '@/services'
+import { selectAllTasks } from '@/services/selectors'
 import { getLevelId, getTypeId } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -37,7 +38,7 @@ export const CreateTaskPage = () => {
   })
   const [createTask, { error, isLoading }] = useCreateTaskMutation()
   const navigate = useNavigate()
-  const allTasks = useAppSelector(state => state.tasks.allTasks)
+  const allTasks = useAppSelector(selectAllTasks)
   const { answersList, handleAddMoreClick, handleAnswerIsRightChange, handleAnswerTextChange } =
     useCreateAnswerBlock()
   const { base64, coverError, coverPreview, handleImageChange, previewFileRemove } =
@@ -48,7 +49,7 @@ export const CreateTaskPage = () => {
 
   const imgSrc = coverPreview || ''
 
-  const hasOneCheckedAnswer = answersList.filter(answer => answer.isRight).length > 0
+  const hasOneCheckedAnswer = answersList.filter(answer => answer.right).length > 0
   const hasTwoAnswers = answersList.filter(answer => answer.text).length >= 2
 
   const {
@@ -76,11 +77,11 @@ export const CreateTaskPage = () => {
       const typeId = getTypeId(value.type || '')
 
       const data = {
+        answers: answers,
         description: value.description || '',
         image: base64,
         level: { id: levelId || levelOptions[1].label, name: value.level || levelOptions[1].value },
         name: value.name,
-        strAnswers: JSON.stringify(answers),
         type: { id: typeId || typeOptions[1].label, name: value.type || typeOptions[1].value },
       }
 
@@ -91,14 +92,14 @@ export const CreateTaskPage = () => {
           navigate(ROUTES.tasks)
         })
         .catch(error => {
-          toast.error(error.data.message || 'error!')
+          toast.error(error.data.message)
         })
     }
   }
 
   useEffect(() => {
-    error && toast.error('Something went wrong...')
-  }, [error])
+    error && navigate(ROUTES.login)
+  }, [error, navigate])
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -163,7 +164,7 @@ export const CreateTaskPage = () => {
                     value={answer.text}
                   />
                   <CheckboxComponent
-                    checked={answer.isRight}
+                    checked={answer.right}
                     label={t('createTaskPage.form.checkboxLabel')}
                     onCheckedHandler={onChecked}
                   />

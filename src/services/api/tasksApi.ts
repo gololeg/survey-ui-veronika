@@ -1,8 +1,14 @@
-import { CreateTaskRequest, GetTaskRequestType, baseApi } from '@/services'
+import { CreateTaskRequest, GetTaskRequestType, UpdateTaskRequest, baseApi } from '@/services'
 
 const tasksApi = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
+      changeTaskStatus: builder.mutation<GetTaskRequestType, { id: number }>({
+        invalidatesTags: ['Task'],
+        query: ({ id }) => {
+          return { method: 'PATCH', url: `v1/tasks/${id}/active` }
+        },
+      }),
       createTask: builder.mutation<GetTaskRequestType, CreateTaskRequest>({
         invalidatesTags: ['Task'],
         query: args => {
@@ -18,8 +24,20 @@ const tasksApi = baseApi.injectEndpoints({
         providesTags: ['Task'],
         query: () => `v1/tasks`,
       }),
+      updateTask: builder.mutation<GetTaskRequestType, UpdateTaskRequest>({
+        invalidatesTags: ['Task'],
+        query: args => {
+          return { body: args, method: 'PUT', url: `v1/tasks` }
+        },
+      }),
     }
   },
 })
 
-export const { useCreateTaskMutation, useGetTaskQuery, useGetTasksQuery } = tasksApi
+export const {
+  useChangeTaskStatusMutation,
+  useCreateTaskMutation,
+  useGetTaskQuery,
+  useGetTasksQuery,
+  useUpdateTaskMutation,
+} = tasksApi
