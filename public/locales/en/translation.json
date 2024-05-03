@@ -11,12 +11,14 @@
     "title": "Tasks list",
     "table": {
       "name": "Name",
+      "active": "Active",
       "description": "Description",
       "type": "Type",
       "level": "Level",
       "action": "Action"
     },
-    "searchPlaceholder": "Search by name"
+    "searchPlaceholder": "Search by name",
+    "statusChanged": "Task status is successfully changed"
   },
   "createTaskPage": {
     "title": "Add new task",
@@ -26,10 +28,12 @@
       "type": "Type",
       "level": "Level",
       "addImgButton": "Add image",
+      "changeImgButton": "Change image",
       "answers": "Answers",
       "checkboxLabel": "Right",
       "addAnswerBlock": "Add answer block",
-      "createTaskButton": "Create task"
+      "createTaskButton": "Create task",
+      "updateTaskButton": "Update task"
     },
     "mistakes": {
       "nameContains": "Name must contain at least 1 character",

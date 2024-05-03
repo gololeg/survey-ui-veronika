@@ -11,12 +11,14 @@
     "title": "Список задач",
     "table": {
       "name": "Название",
+      "active": "Активная",
       "description": "Описание",
       "type": "Тип",
       "level": "Уровень",
       "action": "Действие"
     },
-    "searchPlaceholder": "Поиск по имени"
+    "searchPlaceholder": "Поиск по имени",
+    "statusChanged": "Статус задачи успешно изменен"
   },
   "createTaskPage": {
     "title": "Добавление новой задачи",
@@ -26,10 +28,12 @@
       "type": "Тип",
       "level": "Уровень",
       "addImgButton": "Добавить изображение",
+      "changeImgButton": "Изменить изображение",
       "answers": "Ответы",
       "checkboxLabel": "Верно",
       "addAnswerBlock": "Добавить блок с ответом",
-      "createTaskButton": "Создать задачу"
+      "createTaskButton": "Создать задачу",
+      "updateTaskButton": "Редактировать задачу"
     },
     "mistakes": {
       "nameContains": "Название должно содержать хотя бы 1 символ",
