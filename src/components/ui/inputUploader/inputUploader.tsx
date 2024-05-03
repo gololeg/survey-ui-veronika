@@ -33,6 +33,7 @@ export const InputUploader = ({
           <Button
             className={style.deleteImgButton}
             onClick={previewFileRemove}
+            type={'button'}
             variant={'secondary'}
           >
             X

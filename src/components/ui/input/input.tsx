@@ -4,7 +4,7 @@ import { closeEyeIcon, eyeIcon } from '@/assets'
 
 import s from './input.module.scss'
 
-type InputProps = {
+export type InputProps = {
   className?: string
   errorMessage?: string
   label?: string

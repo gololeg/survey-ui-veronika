@@ -8,7 +8,8 @@ type RadioProps = {
   defaultValue?: string
   isDisabled?: boolean
   onChangeOption?: (option: any) => void
-  options?: any[]
+  options?: { id: any; value: any }[]
+  value?: string
 }
 
 export const Radio = ({
@@ -17,6 +18,7 @@ export const Radio = ({
   isDisabled = false,
   onChangeOption,
   options,
+  value,
 }: RadioProps) => {
   return (
     <>
@@ -24,6 +26,7 @@ export const Radio = ({
         className={`${style.root} ${className}`}
         defaultValue={defaultValue}
         onValueChange={onChangeOption}
+        value={value}
       >
         {options?.map(o => {
           return (
@@ -33,7 +36,7 @@ export const Radio = ({
                   className={style.item}
                   disabled={isDisabled}
                   id={o.id}
-                  value={o.id}
+                  value={o.value}
                 >
                   <RadioGroup.Indicator className={style.indicator} />
                 </RadioGroup.Item>

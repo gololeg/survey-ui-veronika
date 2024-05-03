@@ -5,15 +5,16 @@
 
   & .coverPreview {
     width: 100%;
-    height: 10rem;
+
+    /* height: 10rem; */
     margin-bottom: 1.5rem;
     object-fit: cover;
   }
 
   & .deleteImgButton {
     position: absolute;
-    right: 0;
     top: 0;
+    right: 0;
     padding: 4px 8px;
   }
 }
